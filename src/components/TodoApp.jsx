@@ -1,5 +1,15 @@
 import { useContext, useff } from "react";
 import { todoContext } from "../App";
+import donesound from "../assets/audio/done.wav";
+import deletesound from "../assets/audio/delete.wav";
+
+function playDone() {
+  new Audio(donesound).play();
+}
+
+function playDelete() {
+    new Audio(deletesound).play()
+}
 
 function TodoApp() {
   const { todos, setTodos, newTask, setNewTask, doneTasks, setDoneTasks } =
@@ -79,13 +89,16 @@ function TodoApp() {
               <span>{t.taskName}</span>
               <div className=" flex gap-5">
                 <button
-                  onClick={() => doneTodos(t.id)}
+                  onClick={() => {
+                    doneTodos(t.id);
+                    playDone();
+                  }}
                   className="text-green-500 hover:transform"
                 >
                   done
                 </button>
                 <button
-                  onClick={() => deleteTask(t.id)}
+                  onClick={() => {deleteTask(t.id); playDelete()}}
                   className="text-red-400"
                 >
                   delete
@@ -102,11 +115,11 @@ function TodoApp() {
             <li className="text-gray-500 flex list-none bg-taskBacColor pt-3 pb-4 pl-4 pr-4 rounded-xl  justify-between">
               <span>{d.taskName}</span>
               <div className=" flex gap-5">
-                <button onClick={() => undo(d.id)} className="text-blue-500">
+                <button onClick={() =>{undo(d.id);playDone()} } className="text-blue-500">
                   undo
                 </button>
                 <button
-                  onClick={() => deleteFromDone(d.id)}
+                  onClick={() =>{deleteFromDone(d.id); playDelete()} }
                   className="text-red-400"
                 >
                   delete
