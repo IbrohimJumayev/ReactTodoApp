@@ -70,7 +70,7 @@ function TodoApp() {
             placeholder="Enter a task..."
           />
           <button
-            onClick={addTask}
+            onClick={(e) => {addTask(e); playDelete()}}
             className="text-white bg-borderInputColor pt-1 pl-2 pr-2 pb-1 rounded-lg"
           >
             add
